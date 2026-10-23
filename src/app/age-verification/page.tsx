@@ -198,9 +198,9 @@ function AgeVerificationContent() {
             </button>
           </form>
 
-          {/* Privacy notice */}
+          {/* Security & compliance reassurance */}
           <p className="mt-6 text-center text-white/30 text-xs leading-relaxed">
-            We use a self-declaration process. By confirming, you accept our{' '}
+            By confirming, you certify your age and agree to our{' '}
             <a href="/privacy-policy" className="text-white/50 underline hover:text-white/70">
               Privacy Policy
             </a>{' '}
@@ -208,13 +208,6 @@ function AgeVerificationContent() {
             <a href="/terms" className="text-white/50 underline hover:text-white/70">
               Terms of Use
             </a>.
-          </p>
-        </div>
-
-        {/* Demo notice */}
-        <div className="mt-6 text-center">
-          <p className="text-white/25 text-xs">
-            ⚠ Demo catalogue mode — purchasing is not yet available
           </p>
         </div>
       </div>

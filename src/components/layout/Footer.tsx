@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const footerColumns = [
   {
@@ -46,6 +49,13 @@ const footerColumns = [
 ]
 
 export function Footer() {
+  const pathname = usePathname()
+
+  // Hide footer completely on age verification & age restricted gate pages
+  if (pathname?.startsWith('/age-verification') || pathname?.startsWith('/age-restricted')) {
+    return null
+  }
+
   return (
     <footer className="bg-charcoal text-white">
 

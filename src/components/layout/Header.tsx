@@ -125,6 +125,11 @@ export function Header() {
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
 
+  // Hide header completely on age verification & age restricted gate pages
+  if (pathname?.startsWith('/age-verification') || pathname?.startsWith('/age-restricted')) {
+    return null
+  }
+
   return (
     <>
       {/* Announcement Bar */}
