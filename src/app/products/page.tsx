@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Filter, Search } from 'lucide-react'
+import { ProductCard } from '@/components/product/ProductCard'
 
 export const metadata: Metadata = {
   title: 'All Products | American Leaf Co.',
@@ -210,35 +211,15 @@ export default async function ProductsPage({ searchParams }: PageProps) {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
                 {products.map((p) => (
-                  <Link
+                  <ProductCard
                     key={p.slug}
-                    href={`/products/${p.slug}`}
-                    className="group bg-white rounded-lg border border-border shadow-card overflow-hidden hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 ease-out flex flex-col justify-between"
-                  >
-                    {/* Image with hover scale and overflow-hidden */}
-                    <div className="aspect-square bg-gradient-to-br from-charcoal-800 to-charcoal flex items-center justify-center overflow-hidden">
-                      <div className="text-center px-4 transform transition-transform duration-300 ease-out group-hover:scale-105">
-                        <div className="w-14 h-14 rounded-full border border-gold/30 bg-gold/10 flex items-center justify-center mx-auto mb-2 transition-transform duration-300 group-hover:border-gold/60">
-                          <span className="text-gold font-serif text-2xl font-bold">{p.name.charAt(0)}</span>
-                        </div>
-                        <span className="badge-gray text-xs">{p.type}</span>
-                      </div>
-                    </div>
-
-                    {/* Info */}
-                    <div className="p-4 flex-1 flex flex-col justify-between">
-                      <div>
-                        <p className="text-secondary text-xs mb-1">{p.brand}</p>
-                        <h3 className="text-charcoal text-sm font-semibold leading-snug mb-3 group-hover:text-gold transition-colors duration-200 line-clamp-2">
-                          {p.name}
-                        </h3>
-                      </div>
-                      <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                        <span className="text-charcoal font-bold">{formatPrice(p.price)}</span>
-                        <span className="badge-green text-xs">In Stock</span>
-                      </div>
-                    </div>
-                  </Link>
+                    slug={p.slug}
+                    name={p.name}
+                    brand={p.brand}
+                    type={p.type}
+                    price={p.price}
+                    category={p.category}
+                  />
                 ))}
               </div>
             )}

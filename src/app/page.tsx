@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, Star, Shield, Truck, Phone } from 'lucide-react'
+import { ProductCard } from '@/components/product/ProductCard'
 
 export const metadata: Metadata = {
   title: 'American Leaf Co. — Premium Tobacco Catalogue',
@@ -240,44 +241,14 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product) => (
-              <Link
+              <ProductCard
                 key={product.slug}
-                href={`/products/${product.slug}`}
-                className="group relative bg-white rounded-xl border border-border/80 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col"
-              >
-                {/* Product image placeholder with hover zoom & subtle green gradient */}
-                <div className="relative aspect-square bg-gradient-to-br from-charcoal-800 via-charcoal to-charcoal-900 flex items-center justify-center overflow-hidden">
-                  {/* Subtle green gradient overlay on hover */}
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-emerald-950/60 via-emerald-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10"
-                    aria-hidden="true"
-                  />
-
-                  {/* Icon container with smooth scale transform on hover */}
-                  <div className="relative z-0 text-center px-4 transform transition-transform duration-300 ease-out group-hover:scale-105">
-                    <div className="w-14 h-14 rounded-full border border-gold/40 bg-gold/10 flex items-center justify-center mx-auto mb-2.5 shadow-inner transition-colors duration-300 group-hover:border-gold group-hover:bg-gold/20">
-                      <span className="text-gold font-serif text-xl font-bold">
-                        {product.name.charAt(0)}
-                      </span>
-                    </div>
-                    <span className="text-white/40 text-[11px] uppercase tracking-wider font-medium">{product.type}</span>
-                  </div>
-                </div>
-
-                {/* Info */}
-                <div className="p-5 flex flex-col flex-1 justify-between">
-                  <div>
-                    <p className="text-secondary text-xs uppercase tracking-wider font-medium mb-1.5">{product.brand}</p>
-                    <h3 className="text-charcoal text-base font-serif font-semibold leading-snug mb-3 line-clamp-2 group-hover:text-gold-dark transition-colors">
-                      {product.name}
-                    </h3>
-                  </div>
-                  <div className="flex items-center justify-between pt-3 border-t border-border/60">
-                    <span className="text-charcoal font-bold text-base">{product.price}</span>
-                    <span className="badge-gray text-xs px-2.5 py-0.5 rounded-full">{product.type}</span>
-                  </div>
-                </div>
-              </Link>
+                slug={product.slug}
+                name={product.name}
+                brand={product.brand}
+                type={product.type}
+                price={product.price}
+              />
             ))}
           </div>
 
