@@ -3,6 +3,7 @@ import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { AgeVerificationGuard } from '@/components/age/AgeVerificationGuard'
+import { CartProvider } from '@/context/CartContext'
 
 export const metadata: Metadata = {
   title: {
@@ -39,13 +40,15 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-ivory font-sans text-charcoal antialiased">
-        <AgeVerificationGuard>
-          <Header />
-          <main id="main-content">
-            {children}
-          </main>
-          <Footer />
-        </AgeVerificationGuard>
+        <CartProvider>
+          <AgeVerificationGuard>
+            <Header />
+            <main id="main-content">
+              {children}
+            </main>
+            <Footer />
+          </AgeVerificationGuard>
+        </CartProvider>
       </body>
     </html>
   )

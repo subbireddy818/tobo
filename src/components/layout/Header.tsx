@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ShoppingCart, Search, User, Menu, X, ChevronDown } from 'lucide-react'
+import { useCart } from '@/context/CartContext'
 
 const navigation = [
   { label: 'Home', href: '/' },
@@ -85,6 +86,7 @@ const navigation = [
 
 export function Header() {
   const pathname = usePathname()
+  const { totalItems } = useCart()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
@@ -232,6 +234,11 @@ export function Header() {
                 aria-label="Shopping cart"
               >
                 <ShoppingCart className="w-5 h-5" />
+                {totalItems > 0 && (
+                  <span className="absolute top-0 right-0 bg-[#22C55E] text-white font-bold text-[10px] min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center shadow-sm">
+                    {totalItems}
+                  </span>
+                )}
               </Link>
 
               {/* Mobile menu toggle */}
@@ -359,10 +366,17 @@ export function Header() {
                 </Link>
                 <Link
                   href="/cart"
-                  className="flex items-center gap-2 px-3 py-2.5 text-white/70 hover:text-white text-sm rounded transition-colors"
+                  className="flex items-center justify-between px-3 py-2.5 text-white/70 hover:text-[#4ADE80] text-sm rounded transition-colors"
                 >
-                  <ShoppingCart className="w-4 h-4" />
-                  Cart
+                  <div className="flex items-center gap-2">
+                    <ShoppingCart className="w-4 h-4" />
+                    Cart
+                  </div>
+                  {totalItems > 0 && (
+                    <span className="bg-[#22C55E] text-white font-bold text-xs px-2 py-0.5 rounded-full">
+                      {totalItems}
+                    </span>
+                  )}
                 </Link>
               </div>
             </div>
